@@ -38,6 +38,7 @@ class SendConfirmationCodeRequest
      * Если запрос делается для незарегистрированного клиента, обязательно указывается значение номера телефона в `to`.
      *
      *
+     * @deprecated
      * @var bool
      */
     protected $isAnonymousClient;
@@ -51,6 +52,20 @@ class SendConfirmationCodeRequest
      * @var string
      */
     protected $to;
+
+    /**
+     * Переопределенный шаблон сообщения с кодом. Если не указан, используется системный.
+     *
+     * В шаблоне применяются параметры:
+     * - `$1` - будет заменен сгенерированным проверочным кодом
+     * - `$2` - будет заменен брендом
+     *
+     * Системный шаблон: `$1 — ваш код подтверждения в $2`
+     *
+     *
+     * @var string
+     */
+    protected $template;
 
     /**
      * Номер телефона
@@ -128,6 +143,7 @@ class SendConfirmationCodeRequest
      * Если запрос делается для незарегистрированного клиента, обязательно указывается значение номера телефона в `to`.
      *
      *
+     * @deprecated
      * @return bool
      */
     public function getIsAnonymousClient()
@@ -142,6 +158,7 @@ class SendConfirmationCodeRequest
      * Если запрос делается для незарегистрированного клиента, обязательно указывается значение номера телефона в `to`.
      *
      *
+     * @deprecated
      * @param bool $isAnonymousClient
      *
      * @return self
@@ -178,6 +195,43 @@ class SendConfirmationCodeRequest
     public function setTo($to)
     {
         $this->to = $to;
+        return $this;
+    }
+
+    /**
+     * Переопределенный шаблон сообщения с кодом. Если не указан, используется системный.
+     *
+     * В шаблоне применяются параметры:
+     * - `$1` - будет заменен сгенерированным проверочным кодом
+     * - `$2` - будет заменен брендом
+     *
+     * Системный шаблон: `$1 — ваш код подтверждения в $2`
+     *
+     *
+     * @return string
+     */
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    /**
+     * Переопределенный шаблон сообщения с кодом. Если не указан, используется системный.
+     *
+     * В шаблоне применяются параметры:
+     * - `$1` - будет заменен сгенерированным проверочным кодом
+     * - `$2` - будет заменен брендом
+     *
+     * Системный шаблон: `$1 — ваш код подтверждения в $2`
+     *
+     *
+     * @param string $template
+     *
+     * @return self
+     */
+    public function setTemplate($template)
+    {
+        $this->template = $template;
         return $this;
     }
 }

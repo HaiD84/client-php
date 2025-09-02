@@ -46,6 +46,13 @@ class CalculationResultRow
     protected $offers;
 
     /**
+     * Результат применения промокода к строке
+     *
+     * @var CalculationResultRowPromocode
+     */
+    protected $promocode;
+
+    /**
      * Идентификатор строки, как он передан в запросе
      *
      * @return string
@@ -157,6 +164,29 @@ class CalculationResultRow
     public function setOffers(array $offers)
     {
         $this->offers = $offers;
+        return $this;
+    }
+
+    /**
+     * Результат применения промокода к строке
+     *
+     * @return CalculationResultRowPromocode
+     */
+    public function getPromocode()
+    {
+        return $this->promocode;
+    }
+
+    /**
+     * Результат применения промокода к строке
+     *
+     * @param CalculationResultRowPromocode $promocode
+     *
+     * @return self
+     */
+    public function setPromocode(CalculationResultRowPromocode $promocode)
+    {
+        $this->promocode = $promocode;
         return $this;
     }
 }
