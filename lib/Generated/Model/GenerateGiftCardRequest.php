@@ -15,28 +15,49 @@ class GenerateGiftCardRequest
      *
      * @var string
      */
-    protected $code;
+    protected $kind;
 
     /**
      * Идентификатор номинала карты
      *
      * @return string
      */
+    public function getKind()
+    {
+        return $this->kind;
+    }
+
+    /**
+     * @deprecated in favour of getKind(), left for backward compatibility
+     * @see getKind()
+     * @return string
+     */
     public function getCode()
     {
-        return $this->code;
+        return $this->getKind();
     }
 
     /**
      * Идентификатор номинала карты
      *
-     * @param string $code
+     * @param string $kind
      *
+     * @return self
+     */
+    public function setKind($kind)
+    {
+        $this->kind = $kind;
+        return $this;
+    }
+
+    /**
+     * @deprecated in favour of setKind(), left for backward compatibility
+     * @see setKind()
+     * @param string $code
      * @return self
      */
     public function setCode($code)
     {
-        $this->code = $code;
-        return $this;
+        return $this->setKind($code);
     }
 }

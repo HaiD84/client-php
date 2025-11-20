@@ -2,16 +2,27 @@
 
 namespace CloudLoyalty\Api;
 
+use CloudLoyalty\Api\Generated\Model\ActivateGiftCardRequest;
+use CloudLoyalty\Api\Generated\Model\ActivateGiftCardResponse;
 use CloudLoyalty\Api\Generated\Model\AdjustBalanceRequest;
 use CloudLoyalty\Api\Generated\Model\AdjustBalanceResponse;
 use CloudLoyalty\Api\Generated\Model\ApplyReturnRequest;
 use CloudLoyalty\Api\Generated\Model\ApplyReturnResponse;
 use CloudLoyalty\Api\Generated\Model\CalculateProductsRequest;
 use CloudLoyalty\Api\Generated\Model\CalculateProductsResult;
+use CloudLoyalty\Api\Generated\Model\DiscardGiftCardRequest;
+use CloudLoyalty\Api\Generated\Model\GenerateGiftCardRequest;
+use CloudLoyalty\Api\Generated\Model\GenerateGiftCardResponse;
+use CloudLoyalty\Api\Generated\Model\GetBonusHistoryRequest;
+use CloudLoyalty\Api\Generated\Model\GetBonusHistoryResponse;
+use CloudLoyalty\Api\Generated\Model\GetGiftCardResponse;
 use CloudLoyalty\Api\Generated\Model\GetHistoryRequest;
 use CloudLoyalty\Api\Generated\Model\GetHistoryResponse;
+use CloudLoyalty\Api\Generated\Model\GetPurchaseHistoryRequest;
+use CloudLoyalty\Api\Generated\Model\GetPurchaseHistoryResponse;
 use CloudLoyalty\Api\Generated\Model\GetSettingsRequest;
 use CloudLoyalty\Api\Generated\Model\GetSettingsResponse;
+use CloudLoyalty\Api\Generated\Model\GiftCardQuery;
 use CloudLoyalty\Api\Generated\Model\IssuePromocodeRequest;
 use CloudLoyalty\Api\Generated\Model\IssuePromocodeResponse;
 use CloudLoyalty\Api\Generated\Model\NewClientRequest;
@@ -54,7 +65,8 @@ class Client
 
     public static $arrayElementsHint = [
         'CloudLoyalty\Api\Generated\Model\CalculationResult' => [
-            'rows' => 'CloudLoyalty\Api\Generated\Model\CalculationResultRow'
+            'rows' => 'CloudLoyalty\Api\Generated\Model\CalculationResultRow',
+            'giftCards' => 'CloudLoyalty\Api\Generated\Model\CalculationResultGiftCard'
         ],
         'CloudLoyalty\Api\Generated\Model\CalculationResultRow' => [
             'offers' => 'CloudLoyalty\Api\Generated\Model\CalculationResultRowOffersItem'
@@ -73,6 +85,16 @@ class Client
         ],
         'CloudLoyalty\Api\Generated\Model\CalculateProductsResultItem' => [
             'offers' => 'CloudLoyalty\Api\Generated\Model\AppliedOffer'
+        ],
+        'CloudLoyalty\Api\Generated\Model\GetBonusHistoryResponse' => [
+            'history' => 'CloudLoyalty\Api\Generated\Model\BonusHistoryEntry'
+        ],
+        'CloudLoyalty\Api\Generated\Model\GetPurchaseHistoryResponse' => [
+            'history' => 'CloudLoyalty\Api\Generated\Model\PurchaseHistoryPurchase'
+        ],
+        'CloudLoyalty\Api\Generated\Model\PurchaseHistoryPurchase' => [
+            'giftCards' => 'CloudLoyalty\Api\Generated\Model\PurchaseGiftCard',
+            'rows' => 'CloudLoyalty\Api\Generated\Model\PurchaseRow'
         ],
         // @todo: breaking backward compatibility
         //'CloudLoyalty\Api\Generated\Model\GetHistoryResponse' => [
@@ -284,6 +306,8 @@ class Client
     }
 
     /**
+     * @deprecated in favour of getBonusHistory()
+     * @see getBonusHistory()
      * @param GetHistoryRequest $request
      * @return GetHistoryResponse
      * @throws ProcessingException
@@ -292,6 +316,28 @@ class Client
     public function getHistory(GetHistoryRequest $request)
     {
         return $this->call('get-history', $request, 'CloudLoyalty\Api\Generated\Model\GetHistoryResponse');
+    }
+
+    /**
+     * @param GetBonusHistoryRequest $request
+     * @return GetBonusHistoryResponse
+     * @throws ProcessingException
+     * @throws TransportException
+     */
+    public function getBonusHistory(GetBonusHistoryRequest $request)
+    {
+        return $this->call('get-bonus-history', $request, 'CloudLoyalty\Api\Generated\Model\GetBonusHistoryResponse');
+    }
+
+    /**
+     * @param GetPurchaseHistoryRequest $request
+     * @return GetPurchaseHistoryResponse
+     * @throws ProcessingException
+     * @throws TransportException
+     */
+    public function getPurchaseHistory(GetPurchaseHistoryRequest $request)
+    {
+        return $this->call('get-purchase-history', $request, 'CloudLoyalty\Api\Generated\Model\GetPurchaseHistoryResponse');
     }
 
     /**
@@ -424,6 +470,50 @@ class Client
     public function calculateProducts(CalculateProductsRequest $request)
     {
         return $this->call('calculate-products', $request, 'CloudLoyalty\Api\Generated\Model\CalculateProductsResult');
+    }
+
+    /**
+     * @param GenerateGiftCardRequest $request
+     * @return GenerateGiftCardResponse
+     * @throws ProcessingException
+     * @throws TransportException
+     */
+    public function generateGiftCard(GenerateGiftCardRequest $request)
+    {
+        return $this->call('generate-gift-card', $request, 'CloudLoyalty\Api\Generated\Model\GenerateGiftCardResponse');
+    }
+
+    /**
+     * @param GiftCardQuery $request
+     * @return GetGiftCardResponse
+     * @throws ProcessingException
+     * @throws TransportException
+     */
+    public function getGiftCard(GiftCardQuery $request)
+    {
+        return $this->call('get-gift-card', $request, 'CloudLoyalty\Api\Generated\Model\GetGiftCardResponse');
+    }
+
+    /**
+     * @param ActivateGiftCardRequest $request
+     * @return ActivateGiftCardResponse
+     * @throws ProcessingException
+     * @throws TransportException
+     */
+    public function activateGiftCard(ActivateGiftCardRequest $request)
+    {
+        return $this->call('activate-gift-card', $request, 'CloudLoyalty\Api\Generated\Model\ActivateGiftCardResponse');
+    }
+
+    /**
+     * @param DiscardGiftCardRequest $request
+     * @return \stdClass
+     * @throws ProcessingException
+     * @throws TransportException
+     */
+    public function discardGiftCard(DiscardGiftCardRequest $request)
+    {
+        return $this->call('discard-gift-card', $request, 'stdClass');
     }
 
     /**

@@ -21,6 +21,7 @@ class HistoryEntryPurchase
      * Дата продажи
      *
      * @var string
+     * FIXME: should be DateTime
      */
     protected $executedAt;
 

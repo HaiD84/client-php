@@ -25,6 +25,13 @@ class CalculationResultSummary
     protected $discounts;
 
     /**
+     * Сумма, оплаченная одной или несколькими подарочными картами
+     *
+     * @var float
+     */
+    protected $prepaidAmount;
+
+    /**
      * Сумма всех скидок по чеку
      *
      * @return float
@@ -67,6 +74,29 @@ class CalculationResultSummary
     public function setDiscounts(CalculationResultDiscounts $discounts)
     {
         $this->discounts = $discounts;
+        return $this;
+    }
+
+    /**
+     * Сумма, оплаченная одной или несколькими подарочными картами
+     *
+     * @return float
+     */
+    public function getPrepaidAmount()
+    {
+        return $this->prepaidAmount;
+    }
+
+    /**
+     * Сумма, оплаченная одной или несколькими подарочными картами
+     *
+     * @param float $prepaidAmount
+     *
+     * @return self
+     */
+    public function setPrepaidAmount($prepaidAmount)
+    {
+        $this->prepaidAmount = $prepaidAmount;
         return $this;
     }
 }

@@ -179,7 +179,10 @@ class Serializer implements SerializerInterface
                 continue;
             }
 
-            $fieldName = lcfirst(substr($methodName, 3));
+            $fieldName = substr($methodName, 3);
+            if (!preg_match('/^[A-Z0-9_]+$/', $fieldName)) { // skip for UPPERCASE fields
+                $fieldName = lcfirst($fieldName);
+            }
 
             // No such field in array?
             if (!isset($a[$fieldName])) {
