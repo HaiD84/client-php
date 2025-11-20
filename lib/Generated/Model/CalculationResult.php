@@ -39,6 +39,13 @@ class CalculationResult
     protected $promocode;
 
     /**
+     * Список примененных подарочных карт
+     *
+     * @var CalculationResultGiftCard[]
+     */
+    protected $giftCards;
+
+    /**
      * Список строк чека, количество и порядок соответствует строкам из запроса
      *
      * @return CalculationResultRow[]
@@ -127,6 +134,29 @@ class CalculationResult
     public function setPromocode(CalculationResultPromocode $promocode)
     {
         $this->promocode = $promocode;
+        return $this;
+    }
+
+    /**
+     * Список примененных подарочных карт
+     *
+     * @return CalculationResultGiftCard[]
+     */
+    public function getGiftCards()
+    {
+        return $this->giftCards;
+    }
+
+    /**
+     * Список примененных подарочных карт
+     *
+     * @param CalculationResultGiftCard[] $giftCards
+     *
+     * @return self
+     */
+    public function setGiftCards(array $giftCards)
+    {
+        $this->giftCards = $giftCards;
         return $this;
     }
 }

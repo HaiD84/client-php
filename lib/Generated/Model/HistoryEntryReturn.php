@@ -21,6 +21,7 @@ class HistoryEntryReturn
      * Дата возврата
      *
      * @var string
+     * FIXME: should be DateTime
      */
     protected $executedAt;
 

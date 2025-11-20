@@ -79,6 +79,13 @@ class CalculationQuery
     protected $promocode;
 
     /**
+     * Список уникальных кодов подарочных карт
+     *
+     * @var string[]
+     */
+    protected $giftCards;
+
+    /**
      * Кратность округления суммы всех скидок
      *
      * @var float
@@ -299,6 +306,29 @@ class CalculationQuery
     public function setPromocode($promocode)
     {
         $this->promocode = $promocode;
+        return $this;
+    }
+
+    /**
+     * Список уникальных кодов подарочных карт
+     *
+     * @return string[]
+     */
+    public function getGiftCards()
+    {
+        return $this->giftCards;
+    }
+
+    /**
+     * Список уникальных кодов подарочных карт
+     *
+     * @param string[] $giftCards
+     *
+     * @return self
+     */
+    public function setGiftCards(array $giftCards)
+    {
+        $this->giftCards = $giftCards;
         return $this;
     }
 

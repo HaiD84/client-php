@@ -18,11 +18,18 @@ class GiftCard
     protected $number;
 
     /**
-     * Код выпущенной карты
+     * Уникальный код подарочной карты
      *
      * @var string
      */
     protected $code;
+
+    /**
+     * Код или артикул карты в товароучетной системе (для печатной карты)
+     *
+     * @var string
+     */
+    protected $sku;
 
     /**
      * Номинал
@@ -30,6 +37,49 @@ class GiftCard
      * @var float
      */
     protected $initAmount;
+
+    /**
+     * Остаток на карте
+     *
+     * @var float
+     */
+    protected $balance;
+
+    /**
+     * Статус карты.
+     *
+     * Одно из следующих значений:
+     * - ACTIVE — активная карта, доступная для использования
+     * - INACTIVE — карта требует предварительной активации
+     * - REDEEMED — израсходованная карта
+     * - EXPIRED — истёк срок действия карты
+     * - BLOCKED — заблокированная карта
+     *
+     *
+     * @var string
+     */
+    protected $status;
+
+    /**
+     * Дата активации карты (если она активирована)
+     *
+     * @var \DateTime
+     */
+    protected $activatedAt;
+
+    /**
+     * Дата блокировки карты (если она заблокирована)
+     *
+     * @var \DateTime
+     */
+    protected $blockedAt;
+
+    /**
+     * Дата, с которой действует карта
+     *
+     * @var \DateTime
+     */
+    protected $validFrom;
 
     /**
      * Дата, до которой действует карта
@@ -62,7 +112,7 @@ class GiftCard
     }
 
     /**
-     * Код выпущенной карты
+     * Уникальный код подарочной карты
      *
      * @return string
      */
@@ -72,7 +122,7 @@ class GiftCard
     }
 
     /**
-     * Код выпущенной карты
+     * Уникальный код подарочной карты
      *
      * @param string $code
      *
@@ -81,6 +131,29 @@ class GiftCard
     public function setCode($code)
     {
         $this->code = $code;
+        return $this;
+    }
+
+    /**
+     * Код или артикул карты в товароучетной системе (для печатной карты)
+     *
+     * @return string
+     */
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
+    /**
+     * Код или артикул карты в товароучетной системе (для печатной карты)
+     *
+     * @param string $sku
+     *
+     * @return self
+     */
+    public function setSku($sku)
+    {
+        $this->sku = $sku;
         return $this;
     }
 
@@ -104,6 +177,137 @@ class GiftCard
     public function setInitAmount($initAmount)
     {
         $this->initAmount = $initAmount;
+        return $this;
+    }
+
+    /**
+     * Остаток на карте
+     *
+     * @return float
+     */
+    public function getBalance()
+    {
+        return $this->balance;
+    }
+
+    /**
+     * Остаток на карте
+     *
+     * @param float $balance
+     *
+     * @return self
+     */
+    public function setBalance($balance)
+    {
+        $this->balance = $balance;
+        return $this;
+    }
+
+    /**
+     * Статус карты.
+     *
+     * Одно из следующих значений:
+     * - ACTIVE — активная карта, доступная для использования
+     * - INACTIVE — карта требует предварительной активации
+     * - REDEEMED — израсходованная карта
+     * - EXPIRED — истёк срок действия карты
+     * - BLOCKED — заблокированная карта
+     *
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Статус карты.
+     *
+     * Одно из следующих значений:
+     * - ACTIVE — активная карта, доступная для использования
+     * - INACTIVE — карта требует предварительной активации
+     * - REDEEMED — израсходованная карта
+     * - EXPIRED — истёк срок действия карты
+     * - BLOCKED — заблокированная карта
+     *
+     *
+     * @param string $status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * Дата активации карты (если она активирована)
+     *
+     * @return \DateTime
+     */
+    public function getActivatedAt()
+    {
+        return $this->activatedAt;
+    }
+
+    /**
+     * Дата активации карты (если она активирована)
+     *
+     * @param \DateTime $activatedAt
+     *
+     * @return self
+     */
+    public function setActivatedAt(\DateTime $activatedAt)
+    {
+        $this->activatedAt = $activatedAt;
+        return $this;
+    }
+
+    /**
+     * Дата блокировки карты (если она заблокирована)
+     *
+     * @return \DateTime
+     */
+    public function getBlockedAt()
+    {
+        return $this->blockedAt;
+    }
+
+    /**
+     * Дата блокировки карты (если она заблокирована)
+     *
+     * @param \DateTime $blockedAt
+     *
+     * @return self
+     */
+    public function setBlockedAt(\DateTime $blockedAt)
+    {
+        $this->blockedAt = $blockedAt;
+        return $this;
+    }
+
+    /**
+     * Дата, с которой действует карта
+     *
+     * @return \DateTime
+     */
+    public function getValidFrom()
+    {
+        return $this->validFrom;
+    }
+
+    /**
+     * Дата, с которой действует карта
+     *
+     * @param \DateTime $validFrom
+     *
+     * @return self
+     */
+    public function setValidFrom(\DateTime $validFrom)
+    {
+        $this->validFrom = $validFrom;
         return $this;
     }
 

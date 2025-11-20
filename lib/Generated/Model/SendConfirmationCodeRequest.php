@@ -32,18 +32,6 @@ class SendConfirmationCodeRequest
     protected $externalId;
 
     /**
-     * Указывает, что запрос отправляется для незарегистрированного клиента (то есть без идентификации
-     * клиента по карте или номеру телефона).
-     *
-     * Если запрос делается для незарегистрированного клиента, обязательно указывается значение номера телефона в `to`.
-     *
-     *
-     * @deprecated
-     * @var bool
-     */
-    protected $isAnonymousClient;
-
-    /**
      * Номер телефона для отправки сообщения.
      *
      * Если не указан, сообщение отправляется на номер, ассоциированный с клиентом, для которого делается запрос.
@@ -137,35 +125,21 @@ class SendConfirmationCodeRequest
     }
 
     /**
-     * Указывает, что запрос отправляется для незарегистрированного клиента (то есть без идентификации
-     * клиента по карте или номеру телефона).
-     *
-     * Если запрос делается для незарегистрированного клиента, обязательно указывается значение номера телефона в `to`.
-     *
-     *
-     * @deprecated
+     * @deprecated not used anymore
      * @return bool
      */
     public function getIsAnonymousClient()
     {
-        return $this->isAnonymousClient;
+        return false;
     }
 
     /**
-     * Указывает, что запрос отправляется для незарегистрированного клиента (то есть без идентификации
-     * клиента по карте или номеру телефона).
-     *
-     * Если запрос делается для незарегистрированного клиента, обязательно указывается значение номера телефона в `to`.
-     *
-     *
-     * @deprecated
+     * @deprecated not used anymore
      * @param bool $isAnonymousClient
-     *
      * @return self
      */
     public function setIsAnonymousClient($isAnonymousClient)
     {
-        $this->isAnonymousClient = $isAnonymousClient;
         return $this;
     }
 

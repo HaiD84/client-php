@@ -11,13 +11,6 @@ namespace CloudLoyalty\Api\Generated\Model;
 class GiftCardQuery
 {
     /**
-     * Код номенклатуры или артикул
-     *
-     * @var string
-     */
-    protected $sku;
-
-    /**
      * Уникальный код подарочной карты
      *
      * @var string
@@ -25,25 +18,20 @@ class GiftCardQuery
     protected $code;
 
     /**
-     * Код номенклатуры или артикул
-     *
-     * @return string
+     * @deprecated not used anymore
      */
     public function getSku()
     {
-        return $this->sku;
+        return null;
     }
 
     /**
-     * Код номенклатуры или артикул
-     *
+     * @deprecated not used anymore
      * @param string $sku
-     *
      * @return self
      */
     public function setSku($sku)
     {
-        $this->sku = $sku;
         return $this;
     }
 
