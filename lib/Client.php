@@ -22,6 +22,8 @@ use CloudLoyalty\Api\Generated\Model\GetPurchaseHistoryRequest;
 use CloudLoyalty\Api\Generated\Model\GetPurchaseHistoryResponse;
 use CloudLoyalty\Api\Generated\Model\GetSettingsRequest;
 use CloudLoyalty\Api\Generated\Model\GetSettingsResponse;
+use CloudLoyalty\Api\Generated\Model\GetClientOffersRequest;
+use CloudLoyalty\Api\Generated\Model\GetClientOffersResponse;
 use CloudLoyalty\Api\Generated\Model\GiftCardQuery;
 use CloudLoyalty\Api\Generated\Model\IssuePromocodeRequest;
 use CloudLoyalty\Api\Generated\Model\IssuePromocodeResponse;
@@ -76,6 +78,9 @@ class Client
         ],
         'CloudLoyalty\Api\Generated\Model\GetBalanceResponse' => [
             'bonuses' => 'CloudLoyalty\Api\Generated\Model\ClientBonusExpirationItem'
+        ],
+        'CloudLoyalty\Api\Generated\Model\GetClientOffersResponse' => [
+            'counters' => 'CloudLoyalty\Api\Generated\Model\ClientOfferCounter'
         ],
         'CloudLoyalty\Api\Generated\Model\NewClientResponse' => [
             'bonuses' => 'CloudLoyalty\Api\Generated\Model\ClientBonusExpirationItem'
@@ -281,6 +286,17 @@ class Client
     public function getBalance(ClientQuery $request)
     {
         return $this->call('get-balance', $request, 'CloudLoyalty\Api\Generated\Model\GetBalanceResponse');
+    }
+
+    /**
+     * @param GetClientOffersRequest $request
+     * @return GetClientOffersResponse
+     * @throws ProcessingException
+     * @throws TransportException
+     */
+    public function getClientOffers(GetClientOffersRequest $request)
+    {
+        return $this->call('get-client-offers', $request, 'CloudLoyalty\Api\Generated\Model\GetClientOffersResponse');
     }
 
     /**
