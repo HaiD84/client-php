@@ -3,7 +3,7 @@
     "description": "PHP SDK for MAXMA API",
     "type": "library",
     "require": {
-        "php": ">= 5.4",
+        "php": ">= 7.3",
         "ext-json": "*"
     },
     "require-dev": {
@@ -27,6 +27,11 @@
             "CloudLoyalty\\Api\\": "lib/",
             "Tools\\": "tools/",
             "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
         }
     }
 }
